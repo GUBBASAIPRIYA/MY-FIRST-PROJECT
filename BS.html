@@ -1,0 +1,106 @@
+<!doctype html>
+<?php
+$servername = "localhost";
+$username="sai";
+$password="sai";
+$dbname="saipriya";
+try{
+$conn = mysqli_connect($servername, $username,$password,$dbname);
+echo("successful in connection");
+}catch(MySQLi_Sql_Exception $ex){
+echo("error in connection");
+}
+if(isset($_POST['submit'])){
+$Customer Name=$_POST['Customer Name'];
+$Adharcard Number=$_POST['Adharcard Number'];
+$Phone Number=$_POST['Phone Number'];
+$Email=$_POST['Email'];
+$Table Booking=$_POST['Table Booking'];
+$Timing=$_POST['Timing'];
+$Day=$_POST['Day'];
+$Occasion=$_POST['Occasion'];
+$How many tables to book=$_POST['How many tables to book'];
+$No of males and Females=$_POST['No of males and Females'];
+$Special Entertinment Required=$_POST['Special Entertinment Required'];
+$Payment Mode=$_POST['Payment Mode'];
+$register_query = "INSERT INTO `form`(`Customer Name`, `Adharcard Number`, `Phone Number`,`Email`, `Table Booking`, `Timing`,`Day`,`Occasion`,`How many tables to book`,`No of males and Females`,`Special Entertinment Required`,`Payment Mode`) VALUES ('$Customer Name','$Adharcard Number','$Phone Number','$Email','$Table Booking','$Timing','$Day','$Occasion','$How many tables to book','$No of males and Females','$Special Entertinment Required','$Payment Mode')";
+try{
+$register_result = mysqli_query($conn, $register_query);
+if($register_result){
+if(mysqli_affected_rows($conn)>0){
+echo("registration successful");
+}else{
+echo("error in registration");
+}
+ 
+}
+}catch(Exception $ex){
+echo("error".$ex->getMessage());
+}
+}
+ 
+?>
+
+
+
+
+
+
+
+<html>
+<head>
+</head>
+<body background="table3.html">
+<h1 Align="center" style=color:red><i>WELCOME TO OUR HOTEL<i></h1>
+<h2 align="center"><u><b>Table Booking Slot<b></u></h2><br>
+<h2><u>Fill your Details:</u></h2>
+<form name="f1" >
+Customer Name: <input type="text" name="Customer Name"></input><br><br>
+Adharcard Number: <input type="text" name="Adharcard Number"></input><br><br>
+Phone Number: <input type="text" name="Phone Number"></input><br><br>  <img src="table4.html" align="right" width=550 height=300</img>
+Email: <input type="Email" name="Email"></input><br><br> 
+Table Booking:<input type="radio" name="Table Booking" value="BreakFast">BreakFast</input>
+<input type="radio" name="Table Booking" value="Lunch"> Lunch</input>
+<input type="radio" name="Table Booking" value="Dinner"> Dinner</input><br><br>
+Timing: <input type="time" name="Timing"></input><br><br> 
+Day: <select name="Day">
+<option value="Sunday">Sunday</option>
+<option value="Monday">Monday</option>
+<option value="Tuesday">Tuesday</option>
+<option value="Wednesday">Wednesday</option>
+<option value="Thrusday">Thrusday</option>
+<option value="Friday">Friday</option>
+<option value="Saturday">Saturday</option>
+</select><br><br>
+Occasion: <select name="Occasion">
+<option value="Birthday">Birthday</option>
+<option value="Anniversary Day">Anniversary Day</option>
+<option value="Reception">Reception</option>
+<option value="Valentines">Valentines</option>
+<option value="Wedding">Wedding</option>
+</select><br><br>
+How many tables to book: <select name="How many tables to book">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+</select><br><br>
+No of males and Females: <input type="text" name="No of males and Females"></input><br><br>
+Special Entertinment Required:  <input type="radio" name="Special Entertinment Required"> Yes </input>  
+ <input type="radio" name="Special Entertinment Required"> NO </input> <br><br>
+Payment Mode:<select name="Payment Mode">
+<option value="GOOGLE PAY">GOOGLE PAY</option>
+<optionvalue="PHONE PAY">PHONE PAY</option>
+<option value="ONLINE BANKING">ONLINE BANKING</option>
+</select><br><br>
+<input type="Submit" name="Submit"> 
+<input type="reset" name="reset" value="Reset"  onclick="alert('Please Do again')">
+<input type="button" name="cancel" value="Cancel" onclick="alert('Your Booking Slot get Cancelled')"><br><br>
+</form>
+</body>
+</html>
